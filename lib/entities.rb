@@ -30,4 +30,34 @@ class Entity < Object
   def render(readonly=!@today)
     ""
   end
+
+  def to_a
+    return [ @dayspec, @today ]
+  end
+
+  def save
+  end
+
+  def copy
+  end
+
+  def load
+  end
+
 end
+
+class DailyEntity < Entity
+
+  def initialize(day=nil)
+    super(day)
+    @foo = nil
+  end
+
+  def to_a
+    super << @foo
+  end
+end
+
+d = DailyEntity.new
+p d
+p d.to_a
