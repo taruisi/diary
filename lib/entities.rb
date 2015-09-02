@@ -4,6 +4,12 @@ class Entity < Object
   DaySpec = "%Y/%m/%d"
   DayRegex = %r|((20)?[0-9]{2}/[01][0-9]/[0-3][0-9])|
 
+  attr_reader :dayspec
+
+  def Entity.setSaveDir(path)
+    @@saveDir = path
+  end
+
   def initialize(day=nil)
     @today = false
     if day.class == String then
@@ -44,6 +50,9 @@ class Entity < Object
   def load
   end
 
+  def savePath
+    @@saveDir + subPath
+  end
 end
 
 class DailyEntity < Entity
@@ -58,6 +67,3 @@ class DailyEntity < Entity
   end
 end
 
-d = DailyEntity.new
-p d
-p d.to_a
